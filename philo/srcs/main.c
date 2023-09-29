@@ -14,12 +14,15 @@
 
 int	main(int argc, char **argv)
 {
+	t_philo	*philo;
+
 	if (argc < 5 || argc > 6)
 		return ((print_arg_error()), 1);
 	if (check_arg(argc, argv) == false)
 		return ((print_arg_error()), 1);
 	if (check_arg_value(argc, argv) == false)
 		return ((print_arg_error()), 1);
-
+	if (philo_init(philo, argc, argv) == NULL)
+		return (1);
 }
 

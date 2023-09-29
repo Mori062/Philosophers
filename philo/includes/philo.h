@@ -13,9 +13,29 @@
 #ifndef PHILO_H
 # define PHILO_H
 
-# include <libc.h>
+# include <stdbool.h>
+# include <limits.h>
+# include <stdio.h>
+# include <stddef.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <sys/time.h>
+# include <pthread.h>
+
+typedef struct s_philo
+{
+	int		num_of_philo;
+	int		time_to_die;
+	int		time_to_eat;
+	int		time_to_sleep;
+	int		num_of_must_eat;
+}	t_philo;
 
 // print_error.c
 void	print_arg_error(void);
+
+// check_arg.c
+bool    check_arg_value(int argc, char **argv);
+bool	check_arg(int argc, char **argv);
 
 #endif

@@ -28,6 +28,27 @@ bool	check_arg(int argc, char **argv)
     return (true);
 }
 
+static int ft_atoi(const char *str)
+{
+    int i;
+    long result;
+
+    i = 0;
+    result = 0;
+    if (str == NULL)
+        return (-1);
+    if (str[i] < '0' && str[i] > '9')
+        return (-1);
+    while (str[i] != '\0' && '0' <= str[i] && str[i] <= '9')
+    {
+        result = result * 10 + (str[i] - '0');
+        i++;
+        if (result > INT_MAX)
+            return (-1);
+    }
+    return ((int)result);
+}
+
 bool    check_arg_value(int argc, char **argv)
 {
     int	i;

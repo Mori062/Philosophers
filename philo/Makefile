@@ -9,7 +9,8 @@ endif
 
 SRC_PATH	= srcs
 SRC			= main.c \
-				print_error.c
+				print_error.c \
+				check_args.c
 SRCS		= $(addprefix $(SRC_PATH)/, $(SRC))
 
 OBJ_PATH	= obj
