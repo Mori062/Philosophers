@@ -8,7 +8,8 @@ ifeq ($(MAKECMDGOALS), debug)
 endif
 
 SRC_PATH	= srcs
-SRC			= main.c
+SRC			= main.c \
+				print_error.c
 SRCS		= $(addprefix $(SRC_PATH)/, $(SRC))
 
 OBJ_PATH	= obj

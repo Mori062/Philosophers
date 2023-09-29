@@ -13,6 +13,9 @@
 #ifndef PHILO_H
 # define PHILO_H
 
-# include <stdio.h>
+# include <libc.h>
+
+// print_error.c
+void	print_arg_error(void);
 
 #endif
