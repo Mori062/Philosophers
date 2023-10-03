@@ -6,30 +6,36 @@
 /*   By: morishitashoto <morishitashoto@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 18:36:20 by morishitash       #+#    #+#             */
-/*   Updated: 2023/09/17 23:55:20 by morishitash      ###   ########.fr       */
+/*   Updated: 2023/10/03 14:31:29 by morishitash      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-// usleep, write
-# include <unistd.h>
-// printf
+# include <stdbool.h>
+# include <limits.h>
 # include <stdio.h>
-// malloc, free
+# include <stddef.h>
 # include <stdlib.h>
-// gettimeofday
+# include <unistd.h>
 # include <sys/time.h>
-// pthread_create,
-// pthread_detach,
-// pthread_join,
-// pthread_mutex_init,
-// pthread_mutex_destroy,
-// pthread_mutex_lock,
-// pthread_mutex_unlock,
 # include <pthread.h>
-// memset
-# include <string.h>
+
+typedef struct s_philo
+{
+	int		num_of_philo;
+	int		time_to_die;
+	int		time_to_eat;
+	int		time_to_sleep;
+	int		num_of_must_eat;
+}	t_philo;
+
+// print_error.c
+void	print_arg_error(void);
+
+// check_arg.c
+bool    check_arg_value(int argc, char **argv);
+bool	check_arg(int argc, char **argv);
 
 #endif
