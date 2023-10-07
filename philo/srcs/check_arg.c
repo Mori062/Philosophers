@@ -28,7 +28,7 @@ bool	check_arg(int argc, char **argv)
     return (true);
 }
 
-static int ft_atoi(const char *str)
+int ft_atoi(const char *str)
 {
     int i;
     long result;

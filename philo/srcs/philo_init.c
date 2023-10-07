@@ -3,23 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   philo_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shmorish <shmorish@student.42.fr>          +#+  +:+       +#+        */
+/*   By: morishitashoto <morishitashoto@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 12:48:43 by shmorish          #+#    #+#             */
-/*   Updated: 2023/10/07 13:14:43 by shmorish         ###   ########.fr       */
+/*   Updated: 2023/10/07 17:56:53 by morishitash      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-t_philo_data	*data_init(t_philo_data *philo, int argc, char **argv)
+t_philo_data	*data_init(int argc, char **argv)
 {
-	int				i;
 	t_philo_data	*data;
 
-	i = 0;
+	(void)argc;
 	data = (t_philo_data *)malloc(sizeof(t_philo_data));
-	if (philo == NULL)
+	if (data == NULL)
 		return (NULL);
 	data->num_of_philo = ft_atoi(argv[1]);
 	data->time_to_die = ft_atoi(argv[2]);
@@ -51,4 +50,5 @@ t_philo	*philo_init(t_philo_data *data)
 		philo[i].last_eat_time = 0;
 		i++;
 	}
+	return (philo);
 }

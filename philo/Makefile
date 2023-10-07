@@ -4,13 +4,18 @@ CC			= cc
 CFLAGS		= -Wall -Werror -Wextra -MMD -MP -g
 
 ifeq ($(MAKECMDGOALS), debug)
-	CFLAGS += -fsanitize=address -fno-omit-frame-pointer
+	CFLAGS += -fsanitize=thread
 endif
 
 SRC_PATH	= srcs
 SRC			= main.c \
+				action.c \
+				check_arg.c \
+				philo_bool.c \
+				philo_init.c \
 				print_error.c \
-				check_args.c
+				time.c \
+
 SRCS		= $(addprefix $(SRC_PATH)/, $(SRC))
 
 OBJ_PATH	= obj
@@ -54,10 +59,6 @@ fclean:
 
 re: fclean all
 
-run: all
-	@ clear
-	@ ./$(NAME)
+debug: re
 
-debug: re run
-
-.PHONY : all clean fclean re run debug
+.PHONY : all clean fclean re debug

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shmorish <shmorish@student.42.fr>          +#+  +:+       +#+        */
+/*   By: morishitashoto <morishitashoto@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 18:36:20 by morishitash       #+#    #+#             */
-/*   Updated: 2023/10/07 17:15:43 by shmorish         ###   ########.fr       */
+/*   Updated: 2023/10/07 17:56:17 by morishitash      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_philo_data
 	int		time_to_sleep;
 	int		num_of_must_eat;
 	int		eat_count;
+	int		start_time;
 }	t_philo_data;
 
 typedef struct s_philo
@@ -57,9 +58,21 @@ void	print_arg_error(void);
 // check_arg.c
 bool    check_arg_value(int argc, char **argv);
 bool	check_arg(int argc, char **argv);
+int ft_atoi(const char *str);
 
 // philo_init
-t_philo_data	*data_init(t_philo_data *philo, int argc, char **argv);
-t_philo			*philo_init();
+t_philo_data	*data_init(int argc, char **argv);
+t_philo	*philo_init(t_philo_data *data);
 
+// action.c
+void    think(void);
+void    take_fork(void);
+void    eating(void);
+void    sleep_philo(void);
+
+// philo_bool.c
+t_status    is_philo_dead(t_philo *philo);
+
+// time.c
+int	get_time(void);
 #endif
