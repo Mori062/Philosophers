@@ -6,7 +6,7 @@
 /*   By: morishitashoto <morishitashoto@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 18:36:17 by morishitash       #+#    #+#             */
-/*   Updated: 2023/10/07 17:53:28 by morishitash      ###   ########.fr       */
+/*   Updated: 2023/10/08 18:13:16 by morishitash      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,20 @@
 
 void	*routine(t_philo *philo)
 {
-	// 同時に開始する
-	if (philo->id % 2 == 1)
+	on_your_mark(philo);
+	if (philo->id % 2 == 0)
 		sleep(1);
 	while (1)
 	{
 		think();
-		if (is_philo_dead(philo) == DEAD)
-			break ;
-		take_fork();
-		eating();
-		sleep_philo();
+		// printf("philo[%d] is thinking\n", philo->id);
+		// if (is_philo_dead(philo) == DEAD)
+		// 	break ;
+		take_fork(philo, philo->data);
+		eating(philo, philo->data);
+		sleep_philo(philo->data);
 	}
+
 	return (NULL);
 }
 
@@ -36,12 +38,15 @@ void	run_main(t_philo_data *data, t_philo *philo)
 	i = 0;
 	data->start_time = get_time();
 	printf("start_time: %d\n", data->start_time);
-	// get_time -> どっかに格納
-	while (data->num_of_philo)
+	data->start_time = get_time();
+	printf(" data->num_of_philo: %d\n", data->num_of_philo);
+	while (i < data->num_of_philo)
 	{
 		// create
+		// printf("philo[%d] is created\n", philo[i].id);
 		if (pthread_create(&philo[i].thread, NULL,
 				(void *)routine, &philo[i]) != 0)
+				exit(1);
 		i++;
 	}
 }

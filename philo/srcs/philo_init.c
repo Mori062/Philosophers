@@ -6,11 +6,28 @@
 /*   By: morishitashoto <morishitashoto@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 12:48:43 by shmorish          #+#    #+#             */
-/*   Updated: 2023/10/07 17:56:53 by morishitash      ###   ########.fr       */
+/*   Updated: 2023/10/08 15:50:40 by morishitash      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
+
+void	*mutex_init(t_philo_data *data)
+{
+	int	i;
+
+	i = 0;
+	data->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t)
+			* data->num_of_philo);
+	if (data->forks == NULL)
+		return (free(data), NULL);
+	while (i < data->num_of_philo)
+	{
+		pthread_mutex_init(&data->forks[i], NULL);
+		i++;
+	}
+	return (data);
+}
 
 t_philo_data	*data_init(int argc, char **argv)
 {
@@ -25,9 +42,11 @@ t_philo_data	*data_init(int argc, char **argv)
 	data->time_to_eat = ft_atoi(argv[3]);
 	data->time_to_sleep = ft_atoi(argv[4]);
 	if (argv[5] != NULL)
-		data->eat_count = ft_atoi(argv[5]);
+		data->num_of_must_eat = ft_atoi(argv[5]);
 	else
-		data->eat_count = -1;
+		data->num_of_must_eat = -1;
+	if (mutex_init(data) == NULL)
+		return (NULL);
 	return (data);
 }
 

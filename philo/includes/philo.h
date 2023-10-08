@@ -6,7 +6,7 @@
 /*   By: morishitashoto <morishitashoto@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 18:36:20 by morishitash       #+#    #+#             */
-/*   Updated: 2023/10/07 17:56:17 by morishitash      ###   ########.fr       */
+/*   Updated: 2023/10/08 18:05:49 by morishitash      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@
 
 typedef struct s_philo_data
 {
-	int		num_of_philo;
-	int		time_to_die;
-	int		time_to_eat;
-	int		time_to_sleep;
-	int		num_of_must_eat;
-	int		eat_count;
-	int		start_time;
+	int				num_of_philo;
+	int				time_to_die; // 最後の食べ始めた時間から死ぬまでの時間
+	int				time_to_eat; // 食べる時間
+	int				time_to_sleep; // 眠る時間
+	int				num_of_must_eat; // ひとり何回食べるか 
+	int				start_time; // プログラム開始時間
+	pthread_mutex_t	*forks; // フォーク
 }	t_philo_data;
 
 typedef struct s_philo
@@ -66,13 +66,14 @@ t_philo	*philo_init(t_philo_data *data);
 
 // action.c
 void    think(void);
-void    take_fork(void);
-void    eating(void);
-void    sleep_philo(void);
+void    take_fork(t_philo *philo, t_philo_data *data);
+void    eating(t_philo *philo, t_philo_data *data);
+void    sleep_philo(t_philo_data *data);
 
 // philo_bool.c
 t_status    is_philo_dead(t_philo *philo);
 
 // time.c
 int	get_time(void);
+void	on_your_mark(t_philo *philo);
 #endif
