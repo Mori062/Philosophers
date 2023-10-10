@@ -6,7 +6,7 @@
 /*   By: morishitashoto <morishitashoto@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 18:36:20 by morishitash       #+#    #+#             */
-/*   Updated: 2023/10/08 18:05:49 by morishitash      ###   ########.fr       */
+/*   Updated: 2023/10/10 02:18:14 by morishitash      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ typedef struct s_philo_data
 	int				num_of_must_eat; // ひとり何回食べるか 
 	int				start_time; // プログラム開始時間
 	pthread_mutex_t	*forks; // フォーク
+	pthread_mutex_t	dead_mutex;
+	bool			someone_dead;
+
 }	t_philo_data;
 
 typedef struct s_philo
@@ -41,6 +44,7 @@ typedef struct s_philo
 	int				fork_right;
 	int				fork_left;
 	int				last_eat_time;
+	bool			full;
 	t_philo_data	*data;
 }	t_philo;
 
@@ -65,15 +69,18 @@ t_philo_data	*data_init(int argc, char **argv);
 t_philo	*philo_init(t_philo_data *data);
 
 // action.c
-void    think(void);
+void    think(t_philo *philo, t_philo_data *data);
 void    take_fork(t_philo *philo, t_philo_data *data);
 void    eating(t_philo *philo, t_philo_data *data);
-void    sleep_philo(t_philo_data *data);
+void    sleep_philo(t_philo *philo, t_philo_data *data);
 
 // philo_bool.c
-t_status    is_philo_dead(t_philo *philo);
+bool	is_philo_dead(t_philo *philo);
 
 // time.c
 int	get_time(void);
 void	on_your_mark(t_philo *philo);
+
+// monitor.c
+void	monitor(t_philo *philo);
 #endif

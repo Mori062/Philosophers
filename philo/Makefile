@@ -11,6 +11,7 @@ SRC_PATH	= srcs
 SRC			= main.c \
 				action.c \
 				check_arg.c \
+				monitor.c \
 				philo_bool.c \
 				philo_init.c \
 				print_error.c \

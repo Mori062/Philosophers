@@ -1,6 +1,8 @@
 #include "../includes/philo.h"
-void    think(void)
+void    think(t_philo *philo, t_philo_data *data)
 {
+	(void)data;
+	printf("id: %d ", philo->id);
 	printf("thinking\n");
 }
 
@@ -8,6 +10,7 @@ void    take_fork(t_philo *philo, t_philo_data *data)
 {
 	pthread_mutex_lock(&data->forks[philo->fork_right]);
 	pthread_mutex_lock(&data->forks[philo->fork_left]);
+	printf("id: %d ", philo->id);
 	printf("take_fork\n");
 }
 
@@ -18,11 +21,13 @@ void    eating(t_philo *philo, t_philo_data *data)
 	usleep(data->time_to_eat * 1000);
 	pthread_mutex_unlock(&data->forks[philo->fork_right]);
 	pthread_mutex_unlock(&data->forks[philo->fork_left]);
+	printf("id: %d ", philo->id);
 	printf("eating\n");
 }
 
-void    sleep_philo(t_philo_data *data)
+void    sleep_philo(t_philo *philo, t_philo_data *data)
 {
+	printf("id: %d ", philo->id);
 	printf("sleep_philo\n");
 	usleep(data->time_to_sleep * 1000);
 }
