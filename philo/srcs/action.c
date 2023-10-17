@@ -18,6 +18,12 @@ void    eating(t_philo *philo, t_philo_data *data)
 {
 	philo->last_eat_time = get_time();
 	philo->eat_num++;
+	if (philo->eat_num == data->num_of_must_eat)
+	{
+		pthread_mutex_lock(&philo->full_mutex);
+		philo->full = true;
+		pthread_mutex_unlock(&philo->full_mutex);
+	}
 	usleep(data->time_to_eat * 1000);
 	pthread_mutex_unlock(&data->forks[philo->fork_right]);
 	pthread_mutex_unlock(&data->forks[philo->fork_left]);

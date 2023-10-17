@@ -6,7 +6,7 @@
 /*   By: morishitashoto <morishitashoto@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 01:16:30 by morishitash       #+#    #+#             */
-/*   Updated: 2023/10/10 02:16:32 by morishitash      ###   ########.fr       */
+/*   Updated: 2023/10/12 15:45:57 by morishitash      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,22 @@ int	get_time(void)
 
 void	on_your_mark(t_philo *philo)
 {
-	printf("on_your_mark [1] philo[%d] is created\n", philo->id);
+	// printf("on_your_mark [1] philo[%d] is created\n", philo->id);
 	while (1)
 	{
 		if (get_time() - philo->data->start_time < 1000)
 		{
-			printf("------------------\n");
-			printf("now: %d\n", get_time());
-			printf("start_time: %d\n", philo->data->start_time);
-			printf("philo[%d] is waiting\n", philo->id);
+			// printf("------------------\n");
+			// printf("now: %d\n", get_time());
+			// printf("start_time: %d\n", philo->data->start_time);
+			// printf("philo[%d] is waiting\n", philo->id);
 			usleep(100);
 		}
 		else
 		{
-			printf("philo[%d] start in %d\n", philo->id, get_time());
+			// printf("philo[%d] start in %d\n", philo->id, get_time());
 			break ;
 		}
 	}
-	printf("on_your_mark [2] philo[%d] is created\n", philo->id);
+	// printf("on_your_mark [2] philo[%d] is created\n", philo->id);
 }

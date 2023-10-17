@@ -6,7 +6,7 @@
 /*   By: morishitashoto <morishitashoto@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 18:36:20 by morishitash       #+#    #+#             */
-/*   Updated: 2023/10/10 02:18:14 by morishitash      ###   ########.fr       */
+/*   Updated: 2023/10/12 15:52:26 by morishitash      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ typedef struct s_philo
 	int				fork_right;
 	int				fork_left;
 	int				last_eat_time;
+	pthread_mutex_t	is_dead_mutex;
+	bool			is_dead;
+	pthread_mutex_t	full_mutex;
 	bool			full;
 	t_philo_data	*data;
 }	t_philo;
@@ -83,4 +86,5 @@ void	on_your_mark(t_philo *philo);
 
 // monitor.c
 void	monitor(t_philo *philo);
+bool	is_full_checker(t_philo *philo);
 #endif
