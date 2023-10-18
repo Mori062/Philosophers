@@ -6,7 +6,7 @@
 /*   By: shmorish <shmorish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 18:36:17 by morishitash       #+#    #+#             */
-/*   Updated: 2023/10/18 21:53:47 by shmorish         ###   ########.fr       */
+/*   Updated: 2023/10/19 02:04:16 by shmorish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	*routine(t_philo *philo)
 {
 	on_your_mark(philo);
+	philo->data->start_time = get_time();
 	if (philo->id % 2 == 0)
 		ft_usleep(10);
 	while (1)
@@ -24,7 +25,7 @@ void	*routine(t_philo *philo)
 		think(philo, philo->data);
 		if (is_philo_dead(philo) == true)
 		{
-			printf("------philo[%d] is dead\n", philo->id);
+			printf("%d %d died\n", get_time() - philo->data->start_time, philo->id);
 			break ;
 		}
 		take_fork(philo, philo->data);

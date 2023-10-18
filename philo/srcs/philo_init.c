@@ -6,7 +6,7 @@
 /*   By: shmorish <shmorish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 12:48:43 by shmorish          #+#    #+#             */
-/*   Updated: 2023/10/18 22:05:07 by shmorish         ###   ########.fr       */
+/*   Updated: 2023/10/19 02:13:21 by shmorish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,15 @@ t_philo	*philo_init(t_philo_data *data)
 	{
 		philo[i].id = i + 1;
 		philo[i].eat_num = 0;
-		philo[i].data = data;
 		philo[i].fork_right = i;
-		philo[i].fork_left = i + 1;
+		if (data->num_of_philo - i == 1)
+			philo[i].fork_left = 0;
+		else
+			philo[i].fork_left = i + 1;
 		philo[i].last_eat_time = get_time();
+		philo[i].is_dead = false;
+		philo[i].full = false;
+		philo[i].data = data;
 		i++;
 	}
 	return (philo);
