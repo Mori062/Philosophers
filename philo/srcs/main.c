@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shmorish <shmorish@student.42.fr>          +#+  +:+       +#+        */
+/*   By: morishitashoto <morishitashoto@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 18:36:17 by morishitash       #+#    #+#             */
-/*   Updated: 2023/10/19 02:04:16 by shmorish         ###   ########.fr       */
+/*   Updated: 2023/10/19 02:55:30 by morishitash      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ void	*routine(t_philo *philo)
 		ft_usleep(10);
 	while (1)
 	{
-		// if (philo->id % 2 == 0)
-		// 	printf("偶数！\n");
 		think(philo, philo->data);
 		if (is_philo_dead(philo) == true)
 		{
@@ -40,9 +38,7 @@ void	run_main(t_philo_data *data, t_philo *philo)
 	int	i;
 
 	i = 0;
-	// printf("start_time: %d\n", data->start_time);
 	data->start_time = get_time();
-	// printf("data->num_of_philo: %d\n", data->num_of_philo);
 	while (i < data->num_of_philo)
 	{
 		if (pthread_create(&philo[i].thread, NULL, (void *)routine, &philo[i]) != 0)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shmorish <shmorish@student.42.fr>          +#+  +:+       +#+        */
+/*   By: morishitashoto <morishitashoto@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 01:16:30 by morishitash       #+#    #+#             */
-/*   Updated: 2023/10/18 21:49:53 by shmorish         ###   ########.fr       */
+/*   Updated: 2023/10/19 03:10:28 by morishitash      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	on_your_mark(t_philo *philo)
 {
 	while (1)
 	{
-		if (get_time() - philo->data->start_time > 100)
+		if (get_time() - philo->data->start_time > 1000)
 			break ;
 	}
 }

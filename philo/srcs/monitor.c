@@ -2,19 +2,22 @@
 
 bool	is_dead_checker(t_philo *philo)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < philo->data->num_of_philo)
 	{
-		pthread_mutex_lock(&philo[i].is_dead_mutex);
-		if (philo[i].is_dead == true)
+		if (get_time() - philo[i].last_eat_time > philo->data->time_to_die)
 		{
-			pthread_mutex_unlock(&philo[i].is_dead_mutex);
+			pthread_mutex_lock(&philo->is_dead_mutex);
+			philo->is_dead = true;
+			pthread_mutex_unlock(&philo->is_dead_mutex);
+			pthread_mutex_lock(&philo->data->dead_mutex);
+			philo->data->someone_dead = true;
+			pthread_mutex_unlock(&philo->data->dead_mutex);
+			printf("%d %d died\n", get_time() - philo->data->start_time, philo[i].id);
 			return (true);
 		}
-		pthread_mutex_unlock(&philo[i].is_dead_mutex);
-		i++;
 	}
 	return (false);
 }
@@ -52,5 +55,5 @@ void	monitor(t_philo *philo)
 			break ;
 		}
 	}
-	printf("monitor end\n");
+	// printf("monitor end\n");
 }
