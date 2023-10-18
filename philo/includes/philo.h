@@ -6,7 +6,7 @@
 /*   By: morishitashoto <morishitashoto@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 18:36:20 by morishitash       #+#    #+#             */
-/*   Updated: 2023/10/12 15:52:26 by morishitash      ###   ########.fr       */
+/*   Updated: 2023/10/18 18:08:14 by morishitash      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_philo
 	bool			is_dead;
 	pthread_mutex_t	full_mutex;
 	bool			full;
+	pthread_mutex_t	print_mutex;
 	t_philo_data	*data;
 }	t_philo;
 

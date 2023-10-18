@@ -52,4 +52,5 @@ void	monitor(t_philo *philo)
 			break ;
 		}
 	}
+	printf("monitor end\n");
 }
