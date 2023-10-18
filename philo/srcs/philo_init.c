@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: morishitashoto <morishitashoto@student.    +#+  +:+       +#+        */
+/*   By: shmorish <shmorish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 12:48:43 by shmorish          #+#    #+#             */
-/*   Updated: 2023/10/08 15:50:40 by morishitash      ###   ########.fr       */
+/*   Updated: 2023/10/18 22:05:07 by shmorish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ t_philo	*philo_init(t_philo_data *data)
 		philo[i].data = data;
 		philo[i].fork_right = i;
 		philo[i].fork_left = i + 1;
-		philo[i].last_eat_time = 0;
+		philo[i].last_eat_time = get_time();
 		i++;
 	}
 	return (philo);

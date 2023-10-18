@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: morishitashoto <morishitashoto@student.    +#+  +:+       +#+        */
+/*   By: shmorish <shmorish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 18:36:20 by morishitash       #+#    #+#             */
-/*   Updated: 2023/10/18 18:08:14 by morishitash      ###   ########.fr       */
+/*   Updated: 2023/10/18 18:44:03 by shmorish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ bool	is_philo_dead(t_philo *philo);
 // time.c
 int	get_time(void);
 void	on_your_mark(t_philo *philo);
+void	ft_usleep(int time);
 
 // monitor.c
 void	monitor(t_philo *philo);

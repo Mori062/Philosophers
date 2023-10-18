@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: morishitashoto <morishitashoto@student.    +#+  +:+       +#+        */
+/*   By: shmorish <shmorish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 01:16:30 by morishitash       #+#    #+#             */
-/*   Updated: 2023/10/12 15:45:57 by morishitash      ###   ########.fr       */
+/*   Updated: 2023/10/18 21:49:53 by shmorish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,20 @@ int	get_time(void)
 
 void	on_your_mark(t_philo *philo)
 {
-	// printf("on_your_mark [1] philo[%d] is created\n", philo->id);
 	while (1)
 	{
-		if (get_time() - philo->data->start_time < 1000)
-		{
-			// printf("------------------\n");
-			// printf("now: %d\n", get_time());
-			// printf("start_time: %d\n", philo->data->start_time);
-			// printf("philo[%d] is waiting\n", philo->id);
-			usleep(100);
-		}
-		else
-		{
-			// printf("philo[%d] start in %d\n", philo->id, get_time());
+		if (get_time() - philo->data->start_time > 100)
 			break ;
-		}
 	}
-	// printf("on_your_mark [2] philo[%d] is created\n", philo->id);
+}
+
+void	ft_usleep(int time)
+{
+	int	end_time;
+
+	end_time = get_time() + time;
+	while (end_time > get_time())
+	{
+		usleep((end_time - get_time()) / 2 * 1000);
+	}
 }
