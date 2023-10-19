@@ -2,7 +2,9 @@
 void    think(t_philo *philo, t_philo_data *data)
 {
 	(void)data;
+	pthread_mutex_lock(&philo->print_mutex);
 	printf("%d %d is thinking\n", get_time() - data->start_time, philo->id);
+	pthread_mutex_unlock(&philo->print_mutex);
 }
 
 void    take_fork(t_philo *philo, t_philo_data *data)
@@ -11,16 +13,22 @@ void    take_fork(t_philo *philo, t_philo_data *data)
 	if (philo->fork_right == philo->fork_left)
 	{
 		pthread_mutex_unlock(&data->forks[philo->fork_right]);
+		pthread_mutex_lock(&philo->print_mutex);
 		printf("%d %d is died\n",get_time() - data->start_time, philo->id);
-		exit(0);
+		pthread_mutex_unlock(&philo->print_mutex);
+		return ;
 	}
 	pthread_mutex_lock(&data->forks[philo->fork_left]);
+	pthread_mutex_lock(&philo->print_mutex);
 	printf("%d %d has taken a fork\n", get_time() - data->start_time, philo->id);
+	pthread_mutex_unlock(&philo->print_mutex);
 }
 
 void    eating(t_philo *philo, t_philo_data *data)
 {
+	pthread_mutex_lock(&philo->print_mutex);
 	printf("%d %d is eating\n", get_time() - data->start_time, philo->id);
+	pthread_mutex_unlock(&philo->print_mutex);
 	philo->last_eat_time = get_time();
 	philo->eat_num++;
 	if (philo->eat_num == data->num_of_must_eat)
@@ -36,6 +44,8 @@ void    eating(t_philo *philo, t_philo_data *data)
 
 void    sleep_philo(t_philo *philo, t_philo_data *data)
 {
+	pthread_mutex_lock(&philo->print_mutex);
 	printf("%d %d is sleeping\n", get_time() - data->start_time, philo->id);
+	pthread_mutex_unlock(&philo->print_mutex);
 	ft_usleep(data->time_to_sleep);
 }

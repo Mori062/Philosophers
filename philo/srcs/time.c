@@ -6,7 +6,7 @@
 /*   By: morishitashoto <morishitashoto@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 01:16:30 by morishitash       #+#    #+#             */
-/*   Updated: 2023/10/19 03:10:28 by morishitash      ###   ########.fr       */
+/*   Updated: 2023/10/19 19:08:04 by morishitash      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ void	ft_usleep(int time)
 	end_time = get_time() + time;
 	while (end_time > get_time())
 	{
-		usleep((end_time - get_time()) / 2 * 1000);
+		usleep((end_time - get_time()) / 4 * 1000);
 	}
 }
