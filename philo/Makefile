@@ -68,4 +68,4 @@ debug: re
 
 thread: re
 
-.PHONY : all clean fclean re debug 
+.PHONY : all clean fclean re debug thread
