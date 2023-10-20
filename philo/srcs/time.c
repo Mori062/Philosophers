@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: morishitashoto <morishitashoto@student.    +#+  +:+       +#+        */
+/*   By: shmorish <shmorish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 01:16:30 by morishitash       #+#    #+#             */
-/*   Updated: 2023/10/20 12:35:52 by morishitash      ###   ########.fr       */
+/*   Updated: 2023/10/20 17:56:08 by shmorish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	on_your_mark(t_philo *philo)
 	}
 }
 
-void	ft_usleep(int time)
+void	ft_msleep(int time)
 {
 	int	end_time;
 

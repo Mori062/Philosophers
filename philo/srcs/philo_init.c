@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: morishitashoto <morishitashoto@student.    +#+  +:+       +#+        */
+/*   By: shmorish <shmorish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 12:48:43 by shmorish          #+#    #+#             */
-/*   Updated: 2023/10/19 19:08:25 by morishitash      ###   ########.fr       */
+/*   Updated: 2023/10/20 18:14:07 by shmorish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,20 @@ void	*mutex_init(t_philo_data *data)
 		return (free(data), NULL);
 	while (i < data->num_of_philo)
 	{
-		pthread_mutex_init(&data->forks[i], NULL);
+		if (pthread_mutex_init(&data->forks[i], NULL) != 0)
+			return (NULL);
 		i++;
 	}
+	if (pthread_mutex_init(&data->is_dead_mutex, NULL) != 0)
+		return (NULL);
+	if (pthread_mutex_init(&data->full_mutex, NULL) != 0)
+		return (NULL);
+	if (pthread_mutex_init(&data->print_mutex, NULL) != 0)
+		return (NULL);
+	if (pthread_mutex_init(&data->time_mutex, NULL) != 0)
+		return (NULL);
+	if (pthread_mutex_init(&data->reference_mutex, NULL) != 0)
+		return (NULL);
 	return (data);
 }
 

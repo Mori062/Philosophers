@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: morishitashoto <morishitashoto@student.    +#+  +:+       +#+        */
+/*   By: shmorish <shmorish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 18:36:17 by morishitash       #+#    #+#             */
-/*   Updated: 2023/10/20 12:37:57 by morishitash      ###   ########.fr       */
+/*   Updated: 2023/10/20 18:18:02 by shmorish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 void	*routine(t_philo *philo)
 {
 	on_your_mark(philo);
-	philo->data->start_time = get_time();
+	// pthread_mutex_lock(&philo->time_mutex);
+	// philo->data->start_time = get_time();
+	// pthread_mutex_unlock(&philo->time_mutex);
 	if (philo->id % 2 == 0)
-		ft_usleep(10);
+		ft_msleep(10);
 	while (1)
 	{
 		think(philo, philo->data);
@@ -71,5 +73,8 @@ int	main(int argc, char **argv)
 	if (philo == NULL)
 		return (1);
 	run_main(data, philo);
+	free(philo);
+	free(data);
+	// system("leaks -q philo");
 	return (0);
 }

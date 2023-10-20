@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: morishitashoto <morishitashoto@student.    +#+  +:+       +#+        */
+/*   By: shmorish <shmorish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 18:36:20 by morishitash       #+#    #+#             */
-/*   Updated: 2023/10/20 12:36:56 by morishitash      ###   ########.fr       */
+/*   Updated: 2023/10/20 18:04:54 by shmorish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,12 @@ typedef struct s_philo_data
 	int				num_of_must_eat;
 	int				start_time;
 	pthread_mutex_t	*forks;
-	pthread_mutex_t	dead_mutex;
+	pthread_mutex_t	is_dead_mutex;
+	pthread_mutex_t	full_mutex;
+	pthread_mutex_t	print_mutex;
+	pthread_mutex_t	time_mutex;
+	pthread_mutex_t	reference_mutex;
 	bool			someone_dead;
-
 }	t_philo_data;
 
 typedef struct s_philo
@@ -44,11 +47,8 @@ typedef struct s_philo
 	int				fork_right;
 	int				fork_left;
 	int				last_eat_time;
-	pthread_mutex_t	is_dead_mutex;
 	bool			is_dead;
-	pthread_mutex_t	full_mutex;
 	bool			full;
-	pthread_mutex_t	print_mutex;
 	t_philo_data	*data;
 }	t_philo;
 
@@ -77,7 +77,7 @@ bool			is_philo_dead(t_philo *philo);
 // time.c
 int				get_time(void);
 void			on_your_mark(t_philo *philo);
-void			ft_usleep(int time);
+void			ft_msleep(int time);
 
 // monitor.c
 void			monitor(t_philo *philo);
