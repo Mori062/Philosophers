@@ -6,18 +6,18 @@
 /*   By: morishitashoto <morishitashoto@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 01:16:30 by morishitash       #+#    #+#             */
-/*   Updated: 2023/10/19 21:05:19 by morishitash      ###   ########.fr       */
+/*   Updated: 2023/10/20 12:35:52 by morishitash      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-// milisecond
 int	get_time(void)
 {
 	struct timeval	time;
 
-	gettimeofday(&time, NULL); // need error handling
+	if (gettimeofday(&time, NULL) == -1)
+		return (ft_puterr("gettimeofday error\n"));
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 

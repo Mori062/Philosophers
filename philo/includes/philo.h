@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shmorish <shmorish@student.42.fr>          +#+  +:+       +#+        */
+/*   By: morishitashoto <morishitashoto@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 18:36:20 by morishitash       #+#    #+#             */
-/*   Updated: 2023/10/18 18:44:03 by shmorish         ###   ########.fr       */
+/*   Updated: 2023/10/20 12:36:56 by morishitash      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@
 typedef struct s_philo_data
 {
 	int				num_of_philo;
-	int				time_to_die; // 最後の食べ始めた時間から死ぬまでの時間
-	int				time_to_eat; // 食べる時間
-	int				time_to_sleep; // 眠る時間
-	int				num_of_must_eat; // ひとり何回食べるか 
-	int				start_time; // プログラム開始時間
-	pthread_mutex_t	*forks; // フォーク
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				num_of_must_eat;
+	int				start_time;
+	pthread_mutex_t	*forks;
 	pthread_mutex_t	dead_mutex;
 	bool			someone_dead;
 
@@ -52,41 +52,34 @@ typedef struct s_philo
 	t_philo_data	*data;
 }	t_philo;
 
-typedef enum e_status
-{
-	THINKING,
-	EATING,
-	SLEEPING,
-	DEAD
-}	t_status;
-
 // print_error.c
-void	print_arg_error(void);
+void			print_arg_error(void);
+int				ft_puterr(char *str);
 
 // check_arg.c
-bool    check_arg_value(int argc, char **argv);
-bool	check_arg(int argc, char **argv);
-int ft_atoi(const char *str);
+bool			check_arg_value(int argc, char **argv);
+bool			check_arg(int argc, char **argv);
+int				ft_atoi(const char *str);
 
 // philo_init
 t_philo_data	*data_init(int argc, char **argv);
-t_philo	*philo_init(t_philo_data *data);
+t_philo			*philo_init(t_philo_data *data);
 
 // action.c
-void    think(t_philo *philo, t_philo_data *data);
-void    take_fork(t_philo *philo, t_philo_data *data);
-void    eating(t_philo *philo, t_philo_data *data);
-void    sleep_philo(t_philo *philo, t_philo_data *data);
+void			think(t_philo *philo, t_philo_data *data);
+void			take_fork(t_philo *philo, t_philo_data *data);
+void			eating(t_philo *philo, t_philo_data *data);
+void			sleep_philo(t_philo *philo, t_philo_data *data);
 
 // philo_bool.c
-bool	is_philo_dead(t_philo *philo);
+bool			is_philo_dead(t_philo *philo);
 
 // time.c
-int	get_time(void);
-void	on_your_mark(t_philo *philo);
-void	ft_usleep(int time);
+int				get_time(void);
+void			on_your_mark(t_philo *philo);
+void			ft_usleep(int time);
 
 // monitor.c
-void	monitor(t_philo *philo);
-bool	is_full_checker(t_philo *philo);
+void			monitor(t_philo *philo);
+bool			is_full_checker(t_philo *philo);
 #endif

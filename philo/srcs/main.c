@@ -6,13 +6,11 @@
 /*   By: morishitashoto <morishitashoto@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 18:36:17 by morishitash       #+#    #+#             */
-/*   Updated: 2023/10/20 10:33:52 by morishitash      ###   ########.fr       */
+/*   Updated: 2023/10/20 12:37:57 by morishitash      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
-
-
 
 void	*routine(t_philo *philo)
 {
@@ -25,7 +23,8 @@ void	*routine(t_philo *philo)
 		think(philo, philo->data);
 		if (is_philo_dead(philo) == true)
 		{
-			printf("%d %d died\n", get_time() - philo->data->start_time, philo->id);
+			printf("%d %d died\n", get_time() - philo->data->start_time, \
+				philo->id);
 			break ;
 		}
 		take_fork(philo, philo->data);
@@ -43,16 +42,16 @@ void	run_main(t_philo_data *data, t_philo *philo)
 	data->start_time = get_time();
 	while (i < data->num_of_philo)
 	{
-		if (pthread_create(&philo[i].thread, NULL, (void *)routine, &philo[i]) != 0)
+		if (pthread_create(&philo[i].thread, NULL, \
+			(void *)routine, &philo[i]) != 0)
 		{
-			printf("Error: pthread_create\n");
-			exit(1);
+			ft_puterr("Error: pthread_create\n");
+			return ;
 		}
 		i++;
 	}
 	monitor(philo);
 }
-
 
 int	main(int argc, char **argv)
 {
