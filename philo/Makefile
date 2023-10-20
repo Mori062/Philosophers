@@ -1,10 +1,14 @@
 NAME		= philo
 
 CC			= cc
-CFLAGS		= -Wall -Werror -Wextra -MMD -MP -g
+CFLAGS		= -Wall -Werror -Wextra -MMD -MP -g -pthread
+
+ifeq ($(MAKECMDGOALS), thread)
+	CFLAGS += -fsanitize=thread
+endif
 
 ifeq ($(MAKECMDGOALS), debug)
-	CFLAGS += -fsanitize=thread
+	CFLAGS += -fsanitize=address
 endif
 
 SRC_PATH	= srcs
@@ -62,4 +66,6 @@ re: fclean all
 
 debug: re
 
-.PHONY : all clean fclean re debug
+thread: re
+
+.PHONY : all clean fclean re debug 
