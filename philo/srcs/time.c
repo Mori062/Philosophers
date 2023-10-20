@@ -6,7 +6,7 @@
 /*   By: morishitashoto <morishitashoto@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 01:16:30 by morishitash       #+#    #+#             */
-/*   Updated: 2023/10/19 19:08:04 by morishitash      ###   ########.fr       */
+/*   Updated: 2023/10/19 21:05:19 by morishitash      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,12 @@ int	get_time(void)
 
 void	on_your_mark(t_philo *philo)
 {
+	int	time;
+
+	time = philo->data->start_time;
 	while (1)
 	{
-		if (get_time() - philo->data->start_time > 1000)
+		if (get_time() - time > 1000)
 			break ;
 	}
 }
