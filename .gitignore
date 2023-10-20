@@ -9,3 +9,7 @@ a.out
 
 # Object Files
 obj/
+
+# tester Files
+LazyPhilosophersTester/
+Philosophers-tester/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_arg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: morishitashoto <morishitashoto@student.    +#+  +:+       +#+        */
+/*   By: shmorish <shmorish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 11:26:21 by morishitash       #+#    #+#             */
-/*   Updated: 2023/10/20 11:39:10 by morishitash      ###   ########.fr       */
+/*   Updated: 2023/10/20 16:58:07 by shmorish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ bool	check_arg(int argc, char **argv)
 	while (i < argc)
 	{
 		j = 0;
+		if (argv[i] == NULL)
+			return (false);
+		if (argv[i][0] == '\0')
+			return (false);
 		while (argv[i][j] != '\0')
 		{
 			if (ft_isdigit(argv[i][j]) == false)
