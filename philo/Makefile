@@ -19,6 +19,7 @@ SRC			= main.c \
 				philo_bool.c \
 				philo_init.c \
 				print.c \
+				print_action.c \
 				time.c \
 
 SRCS		= $(addprefix $(SRC_PATH)/, $(SRC))

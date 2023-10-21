@@ -6,7 +6,7 @@
 /*   By: morishitashoto <morishitashoto@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 01:21:14 by morishitash       #+#    #+#             */
-/*   Updated: 2023/10/20 12:41:11 by morishitash      ###   ########.fr       */
+/*   Updated: 2023/10/21 19:15:32 by morishitash      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	print_arg_error(void)
 	ft_puterr("[number_of_times_each_philosopher_must_eat]\n");
 }
 
-int	ft_strlen(char *str)
+static int	ft_strlen(char *str)
 {
 	int	i;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shmorish <shmorish@student.42.fr>          +#+  +:+       +#+        */
+/*   By: morishitashoto <morishitashoto@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 18:36:17 by morishitash       #+#    #+#             */
-/*   Updated: 2023/10/20 18:18:02 by shmorish         ###   ########.fr       */
+/*   Updated: 2023/10/21 18:41:57 by morishitash      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 void	*routine(t_philo *philo)
 {
 	on_your_mark(philo);
-	// pthread_mutex_lock(&philo->time_mutex);
-	// philo->data->start_time = get_time();
-	// pthread_mutex_unlock(&philo->time_mutex);
 	if (philo->id % 2 == 0)
 		ft_msleep(10);
 	while (1)
@@ -41,7 +38,7 @@ void	run_main(t_philo_data *data, t_philo *philo)
 	int	i;
 
 	i = 0;
-	data->start_time = get_time();
+	data->start_time = get_time() + 1000;
 	while (i < data->num_of_philo)
 	{
 		if (pthread_create(&philo[i].thread, NULL, \
@@ -53,6 +50,14 @@ void	run_main(t_philo_data *data, t_philo *philo)
 		i++;
 	}
 	monitor(philo);
+	i = 0;
+	while (i < data->num_of_philo)
+		pthread_join(philo[i++].thread, NULL);
+	pthread_mutex_destroy(&data->is_dead_mutex);
+	pthread_mutex_destroy(&data->full_mutex);
+	pthread_mutex_destroy(&data->print_mutex);
+	pthread_mutex_destroy(&data->time_mutex);
+	pthread_mutex_destroy(&data->reference_mutex);
 }
 
 int	main(int argc, char **argv)

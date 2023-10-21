@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shmorish <shmorish@student.42.fr>          +#+  +:+       +#+        */
+/*   By: morishitashoto <morishitashoto@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 18:36:20 by morishitash       #+#    #+#             */
-/*   Updated: 2023/10/20 18:04:54 by shmorish         ###   ########.fr       */
+/*   Updated: 2023/10/21 19:20:51 by morishitash      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,15 @@ typedef struct s_philo
 	t_philo_data	*data;
 }	t_philo;
 
-// print_error.c
+// print.c
 void			print_arg_error(void);
 int				ft_puterr(char *str);
+
+// print_action.c
+void			print_thinking(t_philo *philo, t_philo_data *data);
+void			print_take_fork(t_philo *philo, t_philo_data *data);
+void			print_eating(t_philo *philo, t_philo_data *data);
+void			print_sleeping(t_philo *philo, t_philo_data *data);
 
 // check_arg.c
 bool			check_arg_value(int argc, char **argv);

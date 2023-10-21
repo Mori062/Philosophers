@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   monitor.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shmorish <shmorish@student.42.fr>          +#+  +:+       +#+        */
+/*   By: morishitashoto <morishitashoto@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 11:23:04 by morishitash       #+#    #+#             */
-/*   Updated: 2023/10/20 18:07:03 by shmorish         ###   ########.fr       */
+/*   Updated: 2023/10/21 19:26:01 by morishitash      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ bool	is_dead_checker(t_philo *philo)
 			philo->is_dead = true;
 			philo->data->someone_dead = true;
 			pthread_mutex_unlock(&philo->data->is_dead_mutex);
-			pthread_mutex_lock(&philo->data->is_dead_mutex);
-			printf("%d %d died\n", get_time() - philo->data->start_time,
+			pthread_mutex_lock(&philo->data->print_mutex);
+			printf("%d %d died from monitor--------------\n", get_time() - philo->data->start_time,
 				philo[i].id);
-			pthread_mutex_unlock(&philo->data->is_dead_mutex);
+			pthread_mutex_unlock(&philo->data->print_mutex);
 			return (true);
 		}
 		pthread_mutex_unlock(&philo->data->time_mutex);
@@ -51,6 +51,9 @@ bool	is_full_checker(t_philo *philo)
 	i = 0;
 	while (i < philo->data->num_of_philo)
 	{
+		// if (rand() % 100000 == 0)
+		// 	printf("-------------------\n");
+		// printf("%d %d is not full\n", get_time() - philo->data->start_time, philo[i].id);
 		pthread_mutex_lock(&philo->data->full_mutex);
 		if (philo[i].full == false)
 		{
@@ -69,7 +72,10 @@ void	monitor(t_philo *philo)
 	{
 		if (is_dead_checker(philo) == true)
 			break ;
+		// if (rand() % 1000000 == 0)
+		// 	printf("-------------------\n");
 		if (is_full_checker(philo) == true)
 			break ;
 	}
+	// printf("monitor end\n");
 }
