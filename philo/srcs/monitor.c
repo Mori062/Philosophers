@@ -6,7 +6,7 @@
 /*   By: morishitashoto <morishitashoto@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 11:23:04 by morishitash       #+#    #+#             */
-/*   Updated: 2023/10/21 19:26:01 by morishitash      ###   ########.fr       */
+/*   Updated: 2023/10/21 19:54:58 by morishitash      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ bool	is_dead_checker(t_philo *philo)
 			philo->data->someone_dead = true;
 			pthread_mutex_unlock(&philo->data->is_dead_mutex);
 			pthread_mutex_lock(&philo->data->print_mutex);
-			printf("%d %d died from monitor--------------\n", get_time() - philo->data->start_time,
+			printf("%d %d died\n", get_time() - philo->data->start_time,
 				philo[i].id);
 			pthread_mutex_unlock(&philo->data->print_mutex);
 			return (true);
@@ -77,5 +77,5 @@ void	monitor(t_philo *philo)
 		if (is_full_checker(philo) == true)
 			break ;
 	}
-	// printf("monitor end\n");
+	printf("monitor end\n");
 }

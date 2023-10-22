@@ -6,7 +6,7 @@
 /*   By: morishitashoto <morishitashoto@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 18:36:17 by morishitash       #+#    #+#             */
-/*   Updated: 2023/10/21 18:41:57 by morishitash      ###   ########.fr       */
+/*   Updated: 2023/10/21 20:48:06 by morishitash      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,11 @@ int	main(int argc, char **argv)
 	if (philo == NULL)
 		return (1);
 	run_main(data, philo);
-	free(philo);
+	free(data->forks);
+	data->forks = NULL;
 	free(data);
+	data = NULL;
+	free(philo);
 	// system("leaks -q philo");
 	return (0);
 }
