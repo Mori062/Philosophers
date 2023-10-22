@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: morishitashoto <morishitashoto@student.    +#+  +:+       +#+        */
+/*   By: shmorish <shmorish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 18:36:20 by morishitash       #+#    #+#             */
-/*   Updated: 2023/10/21 19:20:51 by morishitash      ###   ########.fr       */
+/*   Updated: 2023/10/23 01:57:37 by shmorish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_philo_data
 	pthread_mutex_t	time_mutex;
 	pthread_mutex_t	reference_mutex;
 	bool			someone_dead;
+	bool			everyone_full;
 }	t_philo_data;
 
 typedef struct s_philo

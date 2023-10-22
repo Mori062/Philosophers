@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   action.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: morishitashoto <morishitashoto@student.    +#+  +:+       +#+        */
+/*   By: shmorish <shmorish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 11:22:07 by morishitash       #+#    #+#             */
-/*   Updated: 2023/10/21 19:55:22 by morishitash      ###   ########.fr       */
+/*   Updated: 2023/10/23 01:56:19 by shmorish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	eating(t_philo *philo, t_philo_data *data)
 	ft_msleep(data->time_to_eat);
 	pthread_mutex_unlock(&data->forks[philo->fork_right]);
 	pthread_mutex_unlock(&data->forks[philo->fork_left]);
-	if (philo->eat_num >= data->num_of_must_eat)
+	if (philo->eat_num == data->num_of_must_eat)
 	{
 		pthread_mutex_lock(&philo->data->full_mutex);
 		philo->full = true;

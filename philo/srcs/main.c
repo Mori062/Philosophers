@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: morishitashoto <morishitashoto@student.    +#+  +:+       +#+        */
+/*   By: shmorish <shmorish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 18:36:17 by morishitash       #+#    #+#             */
-/*   Updated: 2023/10/21 20:48:06 by morishitash      ###   ########.fr       */
+/*   Updated: 2023/10/23 02:02:38 by shmorish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
+
+bool	is_everyone_full(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->data->full_mutex);
+	if (philo->data->everyone_full == true)
+	{
+		pthread_mutex_unlock(&philo->data->full_mutex);
+		return (true);
+	}
+	pthread_mutex_unlock(&philo->data->full_mutex);
+	return (false);
+}
 
 void	*routine(t_philo *philo)
 {
@@ -26,6 +38,8 @@ void	*routine(t_philo *philo)
 				philo->id);
 			break ;
 		}
+		if (is_everyone_full(philo) == true)
+			break ;
 		take_fork(philo, philo->data);
 		eating(philo, philo->data);
 		sleep_philo(philo, philo->data);

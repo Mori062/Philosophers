@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   monitor.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: morishitashoto <morishitashoto@student.    +#+  +:+       +#+        */
+/*   By: shmorish <shmorish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 11:23:04 by morishitash       #+#    #+#             */
-/*   Updated: 2023/10/23 01:53:17 by morishitash      ###   ########.fr       */
+/*   Updated: 2023/10/23 02:03:40 by shmorish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,9 @@ bool	is_full_checker(t_philo *philo)
 		pthread_mutex_unlock(&philo->data->full_mutex);
 		i++;
 	}
+	pthread_mutex_lock(&philo->data->full_mutex);
+	philo->data->everyone_full = true;
+	pthread_mutex_unlock(&philo->data->full_mutex);
 	return (true);
 }
 

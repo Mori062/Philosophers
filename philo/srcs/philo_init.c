@@ -6,7 +6,7 @@
 /*   By: shmorish <shmorish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 12:48:43 by shmorish          #+#    #+#             */
-/*   Updated: 2023/10/20 18:14:07 by shmorish         ###   ########.fr       */
+/*   Updated: 2023/10/23 01:58:40 by shmorish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ t_philo_data	*data_init(int argc, char **argv)
 	data->time_to_die = ft_atoi(argv[2]);
 	data->time_to_eat = ft_atoi(argv[3]);
 	data->time_to_sleep = ft_atoi(argv[4]);
+	data->someone_dead = false;
+	data->everyone_full = false;
 	if (argv[5] != NULL)
 		data->num_of_must_eat = ft_atoi(argv[5]);
 	else
