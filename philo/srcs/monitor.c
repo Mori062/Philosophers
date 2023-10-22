@@ -6,7 +6,7 @@
 /*   By: morishitashoto <morishitashoto@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 11:23:04 by morishitash       #+#    #+#             */
-/*   Updated: 2023/10/21 19:54:58 by morishitash      ###   ########.fr       */
+/*   Updated: 2023/10/23 01:53:17 by morishitash      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,17 @@ void	monitor(t_philo *philo)
 	while (1)
 	{
 		if (is_dead_checker(philo) == true)
+		{
+			printf("dead monitor end\n");
 			break ;
+		}
 		// if (rand() % 1000000 == 0)
 		// 	printf("-------------------\n");
 		if (is_full_checker(philo) == true)
+		{
+			printf("full monitor end\n");
 			break ;
+		}
 	}
 	printf("monitor end\n");
 }
