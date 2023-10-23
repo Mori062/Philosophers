@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   action.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shmorish <shmorish@student.42.fr>          +#+  +:+       +#+        */
+/*   By: morishitashoto <morishitashoto@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 11:22:07 by morishitash       #+#    #+#             */
-/*   Updated: 2023/10/23 09:15:01 by shmorish         ###   ########.fr       */
+/*   Updated: 2023/10/23 10:53:48 by morishitash      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,9 @@ void	take_fork(t_philo *philo, t_philo_data *data)
 	{
 		pthread_mutex_unlock(&data->forks[philo->fork_right]);
 		pthread_mutex_lock(&philo->data->print_mutex);
-		printf("%d %d is died\n", get_time() - data->start_time, philo->id);
+		if (philo->data->print_death == false)
+			printf("%d %d is died\n", get_time() - data->start_time, philo->id);
+		philo->data->print_death = true;
 		pthread_mutex_unlock(&philo->data->print_mutex);
 		pthread_mutex_lock(&philo->data->is_dead_mutex);
 		philo->is_dead = true;
@@ -63,9 +65,6 @@ void	eating(t_philo *philo, t_philo_data *data)
 	pthread_mutex_lock(&philo->data->time_mutex);
 	philo->last_eat_time = get_time();
 	pthread_mutex_unlock(&philo->data->time_mutex);
-	pthread_mutex_lock(&philo->data->print_mutex);
-	printf("%d %d is thinking\n", get_time() - data->start_time, philo->id);
-	pthread_mutex_unlock(&philo->data->print_mutex);
 	philo->eat_num++;
 	ft_msleep(data->time_to_eat);
 	pthread_mutex_unlock(&data->forks[philo->fork_right]);

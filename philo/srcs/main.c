@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shmorish <shmorish@student.42.fr>          +#+  +:+       +#+        */
+/*   By: morishitashoto <morishitashoto@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 18:36:17 by morishitash       #+#    #+#             */
-/*   Updated: 2023/10/23 02:29:30 by shmorish         ###   ########.fr       */
+/*   Updated: 2023/10/23 10:11:24 by morishitash      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,7 @@ void	*routine(t_philo *philo)
 	{
 		think(philo, philo->data);
 		if (is_philo_dead(philo) == true)
-		{
-			// printf("%d %d died\n", get_time() - philo->data->start_time, \
-			// 	philo->id);
 			break ;
-		}
 		if (is_everyone_full(philo) == true)
 			break ;
 		take_fork(philo, philo->data);

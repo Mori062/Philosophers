@@ -3,20 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   monitor.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shmorish <shmorish@student.42.fr>          +#+  +:+       +#+        */
+/*   By: morishitashoto <morishitashoto@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 11:23:04 by morishitash       #+#    #+#             */
-/*   Updated: 2023/10/23 02:28:52 by shmorish         ###   ########.fr       */
+/*   Updated: 2023/10/23 10:54:31 by morishitash      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-void	print_dead(t_philo *philo, int i)
+void	print_dead(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->data->print_mutex);
-	printf("%d %d died\n", get_time() - philo->data->start_time,
-		philo[i].id);
+	if (philo->data->print_death == false)
+		printf("%d %d is died\n", get_time() - philo->data->start_time,
+			philo->id);
+	philo->data->print_death = true;
 	pthread_mutex_unlock(&philo->data->print_mutex);
 }
 
@@ -39,7 +41,7 @@ bool	is_dead_checker(t_philo *philo)
 			philo->is_dead = true;
 			philo->data->someone_dead = true;
 			pthread_mutex_unlock(&philo->data->is_dead_mutex);
-			print_dead(philo, i);
+			print_dead(philo);
 			return (true);
 		}
 		pthread_mutex_unlock(&philo->data->time_mutex);
