@@ -6,7 +6,7 @@
 /*   By: shmorish <shmorish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 18:36:17 by morishitash       #+#    #+#             */
-/*   Updated: 2023/10/23 02:02:38 by shmorish         ###   ########.fr       */
+/*   Updated: 2023/10/23 02:29:30 by shmorish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	*routine(t_philo *philo)
 		think(philo, philo->data);
 		if (is_philo_dead(philo) == true)
 		{
-			printf("%d %d died\n", get_time() - philo->data->start_time, \
-				philo->id);
+			// printf("%d %d died\n", get_time() - philo->data->start_time, \
+			// 	philo->id);
 			break ;
 		}
 		if (is_everyone_full(philo) == true)
@@ -97,6 +97,11 @@ int	main(int argc, char **argv)
 	free(data);
 	data = NULL;
 	free(philo);
-	// system("leaks -q philo");
 	return (0);
 }
+
+// __attribute__((destructor))
+// static void	destructor(void)
+// {
+// 	system("leaks -q philo");
+// }

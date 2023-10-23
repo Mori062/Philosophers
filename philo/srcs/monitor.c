@@ -6,11 +6,19 @@
 /*   By: shmorish <shmorish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 11:23:04 by morishitash       #+#    #+#             */
-/*   Updated: 2023/10/23 02:03:40 by shmorish         ###   ########.fr       */
+/*   Updated: 2023/10/23 02:28:52 by shmorish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
+
+void	print_dead(t_philo *philo, int i)
+{
+	pthread_mutex_lock(&philo->data->print_mutex);
+	printf("%d %d died\n", get_time() - philo->data->start_time,
+		philo[i].id);
+	pthread_mutex_unlock(&philo->data->print_mutex);
+}
 
 bool	is_dead_checker(t_philo *philo)
 {
@@ -24,7 +32,6 @@ bool	is_dead_checker(t_philo *philo)
 			return (pthread_mutex_unlock(&philo->data->is_dead_mutex), true);
 		pthread_mutex_unlock(&philo->data->is_dead_mutex);
 		pthread_mutex_lock(&philo->data->time_mutex);
-		// printf("pointer -> %p\n", &philo->data->time_mutex);
 		if (get_time() - philo[i].last_eat_time > philo->data->time_to_die)
 		{
 			pthread_mutex_unlock(&philo->data->time_mutex);
@@ -32,10 +39,7 @@ bool	is_dead_checker(t_philo *philo)
 			philo->is_dead = true;
 			philo->data->someone_dead = true;
 			pthread_mutex_unlock(&philo->data->is_dead_mutex);
-			pthread_mutex_lock(&philo->data->print_mutex);
-			printf("%d %d died\n", get_time() - philo->data->start_time,
-				philo[i].id);
-			pthread_mutex_unlock(&philo->data->print_mutex);
+			print_dead(philo, i);
 			return (true);
 		}
 		pthread_mutex_unlock(&philo->data->time_mutex);
@@ -51,9 +55,6 @@ bool	is_full_checker(t_philo *philo)
 	i = 0;
 	while (i < philo->data->num_of_philo)
 	{
-		// if (rand() % 100000 == 0)
-		// 	printf("-------------------\n");
-		// printf("%d %d is not full\n", get_time() - philo->data->start_time, philo[i].id);
 		pthread_mutex_lock(&philo->data->full_mutex);
 		if (philo[i].full == false)
 		{
@@ -75,16 +76,11 @@ void	monitor(t_philo *philo)
 	{
 		if (is_dead_checker(philo) == true)
 		{
-			printf("dead monitor end\n");
 			break ;
 		}
-		// if (rand() % 1000000 == 0)
-		// 	printf("-------------------\n");
 		if (is_full_checker(philo) == true)
 		{
-			printf("full monitor end\n");
 			break ;
 		}
 	}
-	printf("monitor end\n");
 }
