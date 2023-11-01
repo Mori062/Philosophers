@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   monitor.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: morishitashoto <morishitashoto@student.    +#+  +:+       +#+        */
+/*   By: shmorish <shmorish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 11:23:04 by morishitash       #+#    #+#             */
-/*   Updated: 2023/10/23 10:54:31 by morishitash      ###   ########.fr       */
+/*   Updated: 2023/10/30 21:18:57 by shmorish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ bool	is_full_checker(t_philo *philo)
 
 void	monitor(t_philo *philo)
 {
+	on_your_mark(philo);
 	while (1)
 	{
 		if (is_dead_checker(philo) == true)

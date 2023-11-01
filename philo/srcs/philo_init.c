@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: morishitashoto <morishitashoto@student.    +#+  +:+       +#+        */
+/*   By: shmorish <shmorish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 12:48:43 by shmorish          #+#    #+#             */
-/*   Updated: 2023/10/23 10:53:13 by morishitash      ###   ########.fr       */
+/*   Updated: 2023/10/30 21:17:44 by shmorish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ t_philo	*philo_init(t_philo_data *data)
 			philo[i].fork_left = 0;
 		else
 			philo[i].fork_left = i + 1;
-		philo[i].last_eat_time = INT_MAX;
+		philo[i].last_eat_time = get_time() + 1000;
 		philo[i].is_dead = false;
 		philo[i].full = false;
 		philo[i].data = data;
